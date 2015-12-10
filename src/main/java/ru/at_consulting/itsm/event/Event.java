@@ -47,6 +47,8 @@ public class Event implements  Serializable {
      public String object;
      public String parametr; 
      
+     private String parametrvalue; 
+     
      //@Column(name = "Mc_service", nullable = true)
      public String service;
      
@@ -239,6 +241,14 @@ public class Event implements  Serializable {
 
 	public void setModule(String module) {
 		this.module = module;
+	}
+
+	public String getParametrvalue() {
+		return parametrvalue;
+	}
+
+	public void setParametrvalue(String parametrvalue) {
+		this.parametrvalue = parametrvalue;
 	}
      
      

@@ -33,7 +33,7 @@ public class EventToObjectBean {
 			@XPath(value = "/ns:zabbixEvent/ns:status/text()", namespaces = @NamespacePrefix(prefix = "ns", uri = "http://skuf.gosuslugi.ru/mon/") ) String status,
 			@XPath(value = "/ns:zabbixEvent/ns:hostgroup/text()", namespaces = @NamespacePrefix(prefix = "ns", uri = "http://skuf.gosuslugi.ru/mon/") ) String hostgroup,
 			@XPath(value = "/ns:zabbixEvent/ns:template/text()", namespaces = @NamespacePrefix(prefix = "ns", uri = "http://skuf.gosuslugi.ru/mon/") ) String template,
-			@XPath(value = "/ns:zabbixEvent/value/text()", namespaces = @NamespacePrefix(prefix = "ns", uri = "http://skuf.gosuslugi.ru/mon/") ) String value,
+			@XPath(value = "/ns:zabbixEvent/ns:value/text()", namespaces = @NamespacePrefix(prefix = "ns", uri = "http://skuf.gosuslugi.ru/mon/") ) String value,
 			@XPath(value = "/ns:zabbixEvent/ns:triggerid/text()", namespaces = @NamespacePrefix(prefix = "ns", uri = "http://skuf.gosuslugi.ru/mon/") ) String object) {
 
 		
@@ -60,11 +60,12 @@ public class EventToObjectBean {
 		*/
 		
 		Event ev = new Event();
-		ev.setMessage(String.format("%s: %s", message, value));
+		ev.setMessage(String.format("%s", message));
 		ev.setSeverity(severity.toUpperCase());
 		ev.setSeverity(setRightSeverity(severity.toUpperCase()));
 		ev.setStatus(status);
 		//ev.setParametr(value);
+		ev.setParametrvalue(value);
 		ev.setExternalid(externalid);
 		ev.setTimestamp(timestamp);
 		ev.setHost(host);
