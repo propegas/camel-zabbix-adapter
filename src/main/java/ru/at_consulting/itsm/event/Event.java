@@ -47,7 +47,7 @@ public class Event implements  Serializable {
      public String object;
      public String parametr; 
      
-     private String parametrvalue; 
+     private String parametrValue; 
      
      //@Column(name = "Mc_service", nullable = true)
      public String service;
@@ -244,11 +244,11 @@ public class Event implements  Serializable {
 	}
 
 	public String getParametrvalue() {
-		return parametrvalue;
+		return parametrValue;
 	}
 
-	public void setParametrvalue(String parametrvalue) {
-		this.parametrvalue = parametrvalue;
+	public void setParametrvalue(String parametrValue) {
+		this.parametrValue = parametrValue;
 	}
      
      
