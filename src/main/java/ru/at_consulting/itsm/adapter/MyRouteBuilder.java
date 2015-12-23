@@ -2,6 +2,7 @@ package ru.at_consulting.itsm.adapter;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.properties.PropertiesComponent;
 //import org.apache.camel.*;
 import org.apache.camel.model.dataformat.JsonDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
@@ -24,13 +25,17 @@ public class MyRouteBuilder extends RouteBuilder {
 		myJson.setPrettyPrint(true);
 		myJson.setLibrary(JsonLibrary.Jackson);
 		myJson.setJsonView(Event.class);
+		
+		PropertiesComponent properties = new PropertiesComponent();
+		properties.setLocation("classpath:zabbix.properties");
+		getContext().addComponent("properties", properties);
 
     	from("file:".concat(eventFilesPath))
                     .log("File received")
 
                     .beanRef("XmlToObject", "toObject")
                     .marshal(myJson)
-                    .to(outQueueName)
+                    .to("activemq:{{eventsqueue}}")
                     .log(LoggingLevel.INFO, "*** NEW EVENT: ${id}");;
     }
 
